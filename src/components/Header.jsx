@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { StoreContext } from "./Context";
 
 const Header = () => {
+  const {cart} = useContext(StoreContext) 
   const [isOpen, setIsOpen] = useState(false);
   let location = useLocation()
   // console.log(location)
@@ -30,14 +32,14 @@ const Header = () => {
             MiniShop
           </div>
 
-          
+
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8 font-medium">
             {
               navitems.map((items, index) => {
                 return (
-                  <Link to={items.path} key={index} className={`text-gray-700 ${location.pathname==items.path?"bg-blue-600 text-white rounded px-5 py-2" : ""} hover:text-black-600`}>
+                  <Link to={items.path} key={index} className={`text-gray-700 ${location.pathname == items.path ? "bg-blue-600 text-white rounded px-5 py-2" : ""} hover:text-black-600`}>
                     {items.name}
                   </Link>
                 )
@@ -47,9 +49,18 @@ const Header = () => {
 
 
             {/* Cart Button */}
-            <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-black-700">
-              🛒 Cart
-            </button>
+            <Link to={"/cart"}>
+              <button className="relative flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg">
+                🛒 Cart
+
+                {/* Cart Count */}
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-semibold w-5 h-5 flex items-center justify-center rounded-full">
+                  {cart.length}
+                </span>
+              </button>
+
+            </Link>
+
           </div>
 
           {/* Mobile Menu Button */}
@@ -69,7 +80,7 @@ const Header = () => {
             {
               navitems.map((items, index) => {
                 return (
-                  <Link to={items.path} key={index} className={`text-gray-700 ${location.pathname==items.path?"bg-blue-600 text-white rounded" : ""} hover:text-black-600`}>
+                  <Link to={items.path} key={index} className={`text-gray-700 ${location.pathname == items.path ? "bg-blue-600 text-white rounded" : ""} hover:text-black-600`}>
                     {items.name}
                   </Link>
                 )
@@ -77,9 +88,16 @@ const Header = () => {
             }
 
             {/* Mobile Cart Button */}
-            <button className="flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg">
-              🛒 Cart
-            </button>
+            <Link to={"/cart"}>
+              <button className="relative flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg">
+                🛒 Cart
+
+                {/* Cart Count */}
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-semibold w-5 h-5 flex items-center justify-center rounded-full">
+                  {cart.length}
+                </span>
+              </button>
+            </Link>
           </div>
         </div>
       )}

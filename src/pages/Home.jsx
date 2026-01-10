@@ -29,9 +29,9 @@ export default function Home() {
       <div className='grid p-10 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 md:grid-cols-3 mx-auto max-w-[1300px] flex gap-3 my-10'>
         {
 
-          products.map((prod) => {
+          products.map((prod,index) => {
             return (
-              <ProductCard title={prod.title} id={prod.id} image={prod.thumbnail} />
+              <ProductCard title={prod.title} key={index} id={prod.id} image={prod.thumbnail} />
             )
           })
         }

@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from 'axios'
 import { useEffect } from "react";
 import { useState } from "react";
-
-
-
+import { StoreContext } from "../components/Context";
 
 
 const ProductDetail = () => {
+    const {addtocart} = useContext(StoreContext)
     const [product,setproduct] = useState({})
 
     
@@ -83,7 +82,7 @@ const ProductDetail = () => {
 
                     {/* Buttons */}
                     <div className="mt-8 flex gap-4">
-                        <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">
+                        <button onClick={()=>addtocart(product.id)} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">
                             Add to Cart
                         </button>
                         <button className="border border-blue-600 text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50">

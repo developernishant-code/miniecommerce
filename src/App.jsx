@@ -7,6 +7,7 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import NotFound from './pages/Notfound'
 import ProductDetail from './pages/Details'
+import CartUI from './pages/Cart';
 
 export default function App() {
 
@@ -23,6 +24,10 @@ export default function App() {
           {
             path: "/product/detail/:id?",
             element: <ProductDetail />
+          },
+          {
+            path: "/cart",
+            element: <CartUI />
           },
           {
             path: "/about",
